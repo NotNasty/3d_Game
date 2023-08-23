@@ -2738,7 +2738,7 @@ MonoBehaviour:
   - {fileID: 3469287838467563580}
   - {fileID: 3469287837160521312}
   keysToSwitch: 310000003200000033000000
-  currentWeapon: 1
+  currentWeapon: 0
   sphere: {fileID: 344816022666386524, guid: d8b549d3436014541902d960e719c1b1, type: 3}
   targetLayer:
     serializedVersion: 2

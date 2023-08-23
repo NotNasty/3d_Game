@@ -12,6 +12,8 @@ public class PlayerShooting : MonoBehaviour
     public GameObject sphere;
     public LayerMask targetLayer;
 
+    private Weapon CurrentWeapon => weapons[currentWeapon];
+
     public void Update()
     {
         if (Input.GetMouseButtonDown(0))
@@ -25,12 +27,12 @@ public class PlayerShooting : MonoBehaviour
         Ray shootRay = Camera.main.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2, 0));
         RaycastHit rayCastHit;
 
-        if (Physics.Raycast(shootRay, out rayCastHit, weapons[currentWeapon].maxDistance, targetLayer))
+        if (Physics.Raycast(shootRay, out rayCastHit, CurrentWeapon.maxDistance, targetLayer))
         {
             //Destroy(rayCastHit.collider.gameObject);
-            GameObject newShoot = Instantiate(weapons[currentWeapon].shootPrefab, rayCastHit.point, Quaternion.identity, null);
+            GameObject newShoot = Instantiate(CurrentWeapon.shootPrefab, rayCastHit.point, Quaternion.identity, null);
             newShoot.transform.LookAt(Camera.main.transform);
-            //Destroy(newShoot);
+            Destroy(newShoot, 1f);
         }
     }
 
@@ -70,6 +72,6 @@ public class PlayerShooting : MonoBehaviour
             weapons[i].gameObject.SetActive(false);
         }
 
-        weapons[currentWeapon].gameObject.SetActive(true);
+        CurrentWeapon.gameObject.SetActive(true);
     }
 }
