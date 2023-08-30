@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public float lookSpeed;
     public float lookXLimit;
 
+    public Animator HandAnimator;
+
     private CharacterController characterController;
     private Vector3 moveDirection = Vector3.zero;
     private float rotationX;
@@ -72,5 +74,7 @@ public class PlayerController : MonoBehaviour
             mainCamera.transform.localRotation = Quaternion.Euler(-rotationX, 0, 0);
             transform.rotation *= Quaternion.Euler(0, Input.GetAxis("Mouse X") * lookSpeed, 0);
         }
+
+        HandAnimator.SetFloat("Velocity", characterController.velocity.magnitude);
 	}
 }
